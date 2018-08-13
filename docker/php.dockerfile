@@ -48,11 +48,13 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 RUN docker-php-ext-install gd
 
 # Install PECL extensions
-RUN pecl install xdebug mcrypt-1.0.1 imagick
-RUN docker-php-ext-enable xdebug mcrypt imagick
+RUN pecl install xdebug
+RUN pecl install mcrypt-1.0.1
+RUN pecl install imagick
 
-# Installing dependencies
-COPY . $INSTALL_DIR
+RUN docker-php-ext-enable xdebug
+RUN docker-php-ext-enable mcrypt
+RUN docker-php-ext-enable imagick
 
 COPY docker/xdebug.conf /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 COPY docker/php.dev.ini /usr/local/etc/php/conf.d/php.dev.ini
