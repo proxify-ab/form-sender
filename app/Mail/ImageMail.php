@@ -10,11 +10,11 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 /**
- * Class Image
+ * Class ImageMail
  *
  * @package App\Mail
  */
-class Image extends Mailable
+class ImageMail extends Mailable
 {
     use Queueable, SerializesModels;
 

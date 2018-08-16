@@ -9,13 +9,23 @@ syncs:
         src: './vendor/'
         sync_strategy: 'rsync'
         sync_args: '--delete'
-        sync_host_port: 10772
+        sync_host_port: 10770
+        sync_userid: '33'
         sync_excludes: ["bin/"]
+        notify_terminal: true
+    form-sender-node-sync:
+        src: './node_modules/'
+        sync_strategy: 'rsync'
+        sync_args: '--delete'
+        sync_host_port: 10771
+        sync_userid: '33'
+        sync_excludes: [".bin/"]
         notify_terminal: true
     form-sender-app-sync:
         src: './'
-        sync_host_port: 10777
+        sync_strategy: 'unison'
+        sync_host_port: 10772
         sync_userid: '33'
         sync_args: '-prefer newer -copyonconflict'
-        sync_excludes: ["vendor", ".idea", ".git"]
+        sync_excludes: ["vendor", ".idea", ".git", "docker", "node_modules"]
         notify_terminal: true

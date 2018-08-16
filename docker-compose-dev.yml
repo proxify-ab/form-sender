@@ -8,6 +8,7 @@ services:
         - mysql_default
         volumes:
         - form-sender-vendor-sync:/opt/vendor:nocopy
+        - form-sender-node-sync:/opt/node_modules:nocopy
         - form-sender-app-sync:/opt:nocopy
         environment:
             XDEBUG_CONFIG: "remote_host=192.168.31.231"
@@ -26,6 +27,7 @@ services:
         - 80
         volumes:
         - form-sender-vendor-sync:/opt/vendor:nocopy
+        - form-sender-node-sync:/opt/node_modules:nocopy
         - form-sender-app-sync:/opt:nocopy
 networks:
     mysql_default:
@@ -36,6 +38,8 @@ volumes:
     form-sender-vendor-sync:
         external: true
     form-sender-app-sync:
+        external: true
+    form-sender-node-sync:
         external: true
     mysql-data:
         external: true
