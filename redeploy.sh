@@ -12,7 +12,7 @@ echo "Running composer..."
 composer install --no-dev --optimize-autoloader
 
 echo "Running database migrations..."
-php artisan d:m:m --force
+php artisan migrate
 
 echo "Running npm..."
 npm i --save-prod
