@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use Dingo\Api\Routing\Router;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});*/
+
+$api = app('Dingo\Api\Routing\Router');
+
+$api->version('v1', function (Router $api) {
+    // File API
+    $api->post('/files/upload', 'App\Http\Controllers\Api\FileApiController@upload');
 });

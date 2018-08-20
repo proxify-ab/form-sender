@@ -25,6 +25,7 @@ RUN apt-get update \
           python \
           rsync \
           cron \
+          supervisor \
           wget \
           ssh-import-id \
           locales \
@@ -48,18 +49,19 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 RUN docker-php-ext-install gd
 
 # Install PECL extensions
-RUN pecl install xdebug
 RUN pecl install mcrypt-1.0.1
 RUN pecl install imagick
 
-RUN docker-php-ext-enable xdebug
 RUN docker-php-ext-enable mcrypt
 RUN docker-php-ext-enable imagick
 
-COPY docker/xdebug.conf /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-COPY docker/php.dev.ini /usr/local/etc/php/conf.d/php.dev.ini
-COPY docker/php-debug /usr/local/bin/phpxdbg
-COPY docker/sf-debug /usr/local/bin/sfdbg
-RUN chmod 755 /usr/local/bin/phpxdbg && chmod 755 /usr/local/bin/sfdbg
+COPY docker/php/php.prod.ini /usr/local/etc/php/conf.d/php.prod.ini
+
+# Install laravel schedule task
+COPY docker/supervisor/laravel_schedule.conf /etc/supervisor/conf.d/laravel_schedule.conf
+
+COPY docker/php/php.run.sh /var/php.run.sh
+RUN chmod 0777 /var/php.run.sh && chown -R www-data:www-data $INSTALL_DIR
 
 WORKDIR $INSTALL_DIR
+ENTRYPOINT "/var/php.run.sh"
