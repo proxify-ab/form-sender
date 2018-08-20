@@ -25,10 +25,10 @@ RUN apt-get update \
           telnet \
       && rm -rf /var/lib/apt/lists/*
 
-COPY docker/nginx.conf /etc/nginx/nginx.conf
+COPY docker/nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Installing dependencies
-COPY docker/nginx.run.sh /var
+COPY docker/nginx/nginx.run.sh /var
 RUN chmod 0777 /var/nginx.run.sh
 
 WORKDIR $INSTALL_DIR

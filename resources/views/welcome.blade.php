@@ -16,6 +16,7 @@
     <div class="content">
         <div class="title m-b-md">
             Pictures mailer
+            <small class="display-5">by Proxify</small>
         </div>
 
         <div id="dropzone">

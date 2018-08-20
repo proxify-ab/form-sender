@@ -1,1 +1,1 @@
-<p>Test email</p>
+<p>This email was sent automatically</p>
