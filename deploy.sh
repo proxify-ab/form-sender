@@ -9,7 +9,7 @@ echo "Running composer..."
 composer install --no-dev --optimize-autoloader
 
 echo "Running database migrations..."
-php artisan migrate
+php artisan migrate --force
 
 echo "Running npm..."
 #npm i --global cross-env
