@@ -19,8 +19,6 @@ class FileMail extends Mailable
     use Queueable, SerializesModels;
 
     const PATH = 'app/public';
-    const FROM = '';
-    const TO = '';
 
     /** @var FileMailDto */
     protected $dto;
@@ -45,6 +43,7 @@ class FileMail extends Mailable
         return $this->from(env('FILE_MAIL_FROM'))
             ->to(env('FILE_MAIL_TO'))
             ->view('email')
+            ->subject('Scan')
             ->attach($this->getFilePath($this->dto->getName()));
     }
 

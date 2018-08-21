@@ -1,1 +1,1 @@
-<p>This email was sent automatically</p>
+<p>See attachment</p>
